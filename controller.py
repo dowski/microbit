@@ -1,3 +1,11 @@
+"""An example of a controller that can be moved around the microbit display.
+
+Use the A and B buttons to move.
+
+When moving left, if it reaches the edge of the screen it moves up a row and over
+to the right. If moving right, if it reaches the edge it moves down a row and over
+to the left. It also wraps when it reaches the top/bottom of the screen.
+"""
 from microbit import *
 
 controller = {
