@@ -22,16 +22,16 @@ class FallingParticle:
         self.y = 0
         self.brightness = speed
         self.age = 0
-    
+
     def drop(self):
         if self.speed > random.randint(0, MAX_SPEED - 1):
             self.y += 1
-        
+
 class Animator:
     def __init__(self):
         self.particles = []
         self.max_particles = 1
-        
+
     def generate(self, requested=0):
         particle_count = len(self.particles)
         self.max_particles = max(requested + self.max_particles, 0)
@@ -42,18 +42,18 @@ class Animator:
                         random.randint(MIN_SPEED, MAX_SPEED),
                         random.randint(0, MAX_X))
                 self.particles.append(particle)
-    
+
     def render(self):
         display.clear()
         for particle in self.particles:
             display.set_pixel(particle.x, particle.y, particle.brightness)
-    
+
     def advance(self):
         for particle in self.particles[:]:
             particle.drop()
             if particle.y > MAX_Y:
                 self.particles.remove(particle)
-    
+
 animator = Animator()
 while True:
     animator.generate(requested=button_a.get_presses() - button_b.get_presses())
